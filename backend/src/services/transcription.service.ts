@@ -2,6 +2,7 @@ import fs from "fs";
 import {
   AudioConfig,
   AudioInputStream,
+  CancellationReason,
   ResultReason,
   SpeechConfig,
   SpeechRecognizer,
@@ -46,6 +47,11 @@ function transcriptionStream() {
     pushStream.close();
   });
 
+  fileStream.on("error", (err) => {
+    console.error("Erro ao ler o arquivo:", err);
+    pushStream.close();
+  });
+
   const audioConfig = AudioConfig.fromStreamInput(pushStream);
   const speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
 
@@ -61,6 +67,20 @@ function transcriptionStream() {
       fullText += e.result.text;
       writeStream.write(fullText);
     }
+  };
+
+  speechRecognizer.canceled = (s, e) => {
+    console.error(`Cancelado: Razão=${e.reason}`);
+    if (e.reason === CancellationReason.Error) {
+      console.log(`Cancelado: Error Code=${e.errorCode}`);
+      console.log(`Cancelado: Detalhes do Erro=${e.errorDetails}`);
+    }
+    speechRecognizer.stopContinuousRecognitionAsync();
+  };
+
+  speechRecognizer.sessionStopped = (s, e) => {
+    console.log(`Sessão interrompida: sessionId=${e.sessionId}`);
+    speechRecognizer.startContinuousRecognitionAsync();
   };
 
   speechRecognizer.startContinuousRecognitionAsync();
