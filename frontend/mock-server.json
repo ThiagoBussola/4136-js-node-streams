@@ -1,0 +1,72 @@
+{
+  "videos": [
+    {
+      "id": 1,
+      "url": "/assets/video.mp4",
+      "titulo": "Video aula de React Hooks",
+      "descricao": "Este é um vídeo de exemplo sobre React Hooks. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+      "thumbnail": "/assets/thumbnail.png"
+    },
+    {
+      "id": 2,
+      "url": "/assets/video.mp4",
+      "titulo": "Video aula de React Router",
+      "descricao": "Este é um vídeo de exemplo sobre React Router. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+      "thumbnail": "/assets/thumbnail.png"
+    },
+    {
+      "id": 3,
+      "url": "/assets/video.mp4",
+      "titulo": "Video aula de React Context API",
+      "descricao": "Este é um vídeo de exemplo sobre React Context API. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+      "thumbnail": "/assets/thumbnail.png"
+    },
+    {
+      "id": 4,
+      "url": "/assets/video.mp4",
+      "titulo": "Video aula de React Hooks 2",
+      "descricao": "Este é um vídeo de exemplo sobre React Hooks 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+      "thumbnail": "/assets/thumbnail.png"
+    },
+    {
+      "id": 5,
+      "url": "/assets/video.mp4",
+      "titulo": "Video aula de React Hooks 3",
+      "descricao": "Este é um vídeo de exemplo sobre React Hooks 3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+      "thumbnail": "/assets/thumbnail.png"
+    },
+    {
+      "id": 6,
+      "url": "/assets/video.mp4",
+      "titulo": "Video aula de React Hooks massa",
+      "descricao": "Este é um vídeo de exemplo sobre React Hooks 4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+      "thumbnail": "/assets/thumbnail.png"
+    }
+  ],
+  "transcript": [
+    {
+      "id": 1,
+      "text": "Transcript do vídeo de React Hooks. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."
+    },
+    {
+      "id": 2,
+      "text": "Transcript do vídeo de React Router. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."
+    },
+    {
+      "id": 3,
+      "text": "Transcript do vídeo de React Context API. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."
+    },
+    {
+      "id": 4,
+      "text": "Transcript do vídeo de React Hooks 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."
+    },
+    {
+      "id": 5,
+      "text": "Transcript do vídeo de React Hooks 3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."
+    },
+    {
+      "id": 6,
+      "text": "Transcript do vídeo de React Hooks 4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."
+    }
+  ]
+}
