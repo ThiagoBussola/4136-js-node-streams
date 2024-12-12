@@ -46,6 +46,7 @@ videoRouter.get("/videos", async (req: Request, res: Response) => {
     titulo: file,
     descricao: "Descrição do vídeo",
     thumbnail: "http://localhost:3001/uploads/thumbnail.png",
+    transcription: `/transcription/${file.replace(".mp4", "")}`,
   }));
 
   console.log(videos);
