@@ -1,7 +1,11 @@
 import { Request, Response, Router } from "express";
-import { ensureDirectoryExists, uploadDirectory } from "../../utils/helper";
+import {
+  ensureDirectoryExists,
+  fileExists,
+  uploadDirectory,
+} from "../../utils/helper";
 import path from "path";
-import { createWriteStream } from "fs";
+import { createReadStream, createWriteStream } from "fs";
 import { pipeline } from "stream";
 import { readdir } from "fs/promises";
 import { spawn } from "child_process";
@@ -94,5 +98,20 @@ videoRouter.get("/video/:fileName", (req: Request, res: Response) => {
     ffmpegProcess.kill("SIGKILL");
   });
 });
+
+videoRouter.get(
+  "/transcription/:fileName",
+  async (req: Request, res: Response) => {
+    const fileName = req.params.fileName;
+    const transcriptionFilePath = path.join(uploadDirectory, `${fileName}.txt`);
+
+    await fileExists(transcriptionFilePath);
+
+    res.setHeader("Content-Type", "text/plain");
+    const readStream = createReadStream(transcriptionFilePath, "utf8");
+
+    readStream.pipe(res);
+  }
+);
 
 export { videoRouter };
