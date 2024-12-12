@@ -1,3 +1,4 @@
+node_modules/*
 backend/uploads/*
 backend/node_modules
 backend/*.mp4
