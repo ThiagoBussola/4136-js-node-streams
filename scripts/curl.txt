@@ -1,0 +1,12 @@
+# curl do upload
+
+curl -X POST http://localhost:3001/upload/prepared-video.mp4 \
+  -T /home/alura/Workspace/Alura/4136-streams/backend/prepared-video.mp4
+
+# list videos
+
+curl -X GET http://localhost:3001/videos
+
+stream
+Acesse no navegador: http://localhost:3001/video/prepared-video.mp4
+
