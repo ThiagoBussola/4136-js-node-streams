@@ -4,6 +4,7 @@ import path from "path";
 import { createWriteStream } from "fs";
 import { pipeline } from "stream";
 import { readdir } from "fs/promises";
+import { spawn } from "child_process";
 
 const videoRouter = Router();
 
@@ -45,6 +46,53 @@ videoRouter.get("/videos", async (req: Request, res: Response) => {
 
   console.log(videos);
   res.status(200).json(videos);
+});
+
+videoRouter.get("/video/:fileName", (req: Request, res: Response) => {
+  const filePath = path.resolve(uploadDirectory, req.params.fileName);
+
+  res.writeHead(200, { "Content-Type": "video/mp4" });
+
+  const ffmpegProcess = spawn("ffmpeg", [
+    "-i",
+    filePath,
+    "-vcodec",
+    "libx264",
+    "-acodec",
+    "aac",
+    "-movflags",
+    "frag_keyframe+empty_moov+default_base_moof",
+    "-b:v",
+    "1500k",
+    "-maxrate",
+    "1500k",
+    "-bufsize",
+    "1000k",
+    "-f",
+    "mp4",
+    "pipe:1",
+  ]);
+
+  ffmpegProcess.stderr.on("data", (data) => {
+    console.error(`FFmpeg stderr: ${data}`);
+  });
+
+  ffmpegProcess.stdout.pipe(res);
+
+  ffmpegProcess.on("close", (code) => {
+    if (code === 0) return res.end();
+
+    console.error(`O processo FFmpeg foi fechado com o código ${code}`);
+
+    if (!res.headersSent)
+      return res.status(500).send("Erro no processamento do vídeo");
+
+    res.end();
+  });
+
+  req.on("close", () => {
+    ffmpegProcess.kill("SIGKILL");
+  });
 });
 
 export { videoRouter };
